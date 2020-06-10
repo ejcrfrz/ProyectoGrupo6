@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#FFFFFF"
+    android:backgroundTint="@color/secondaryDarkColor"
+    tools:context=".MainActivity"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+    >
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -26,3 +31,4 @@
         tools:layout_editor_absoluteX="90dp"
         tools:layout_editor_absoluteY="58dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
