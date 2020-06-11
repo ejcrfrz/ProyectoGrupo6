@@ -39,4 +39,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0"
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //implementation 'com.android.support:appcompat-v7:26.1.0'
 }

@@ -27,6 +27,9 @@ public class PantallaInicioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_inicio);
 
 
+
+
+
         //Animations
         topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottonAnim = AnimationUtils.loadAnimation(this,R.anim.botton_animation);
