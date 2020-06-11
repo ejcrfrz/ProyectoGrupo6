@@ -61,6 +61,7 @@ public class ListaIncidenciasUsuarioAdapter extends RecyclerView.Adapter<ListaIn
 
     @Override
     public int getItemCount() {
+
         return listaincidente.length;
     }
 
