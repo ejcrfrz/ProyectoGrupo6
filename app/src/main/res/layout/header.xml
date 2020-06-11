@@ -3,28 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="150dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#E89CF3"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background"
+    android:gravity="bottom"
+
 
     >
 
 
-    <TextView
-        android:id="@+id/Id_incidencia"
-        android:layout_width="261dp"
-        android:layout_height="66dp"
-        android:fontFamily="@font/andika"
-        android:text="TextView"
-        android:textAlignment="inherit"
-        android:textSize="18sp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="247dp"
+        android:layout_height="67dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
-
-
+        app:layout_constraintVertical_bias="0.807"
+        app:srcCompat="@drawable/logo_oficial" />
 </androidx.constraintlayout.widget.ConstraintLayout>

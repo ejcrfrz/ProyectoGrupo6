@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pucp.proyectogrupo6">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListaUsuarioActivity"></activity>
+        <activity android:name=".CrearIncidenciaUsuarioActivity"></activity>
+        <activity
+            android:name=".ListaUsuarioActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".PantallaInicioActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
