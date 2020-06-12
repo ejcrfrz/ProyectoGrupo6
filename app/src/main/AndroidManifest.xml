@@ -14,7 +14,10 @@
         android:label="R.I.PUCP"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        >
+
         <activity android:name=".CrearIncidenciaUsuarioActivity"></activity>
         <activity
             android:name=".ListaUsuarioActivity"

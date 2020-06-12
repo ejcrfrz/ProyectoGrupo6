@@ -109,6 +109,13 @@ public class ListaUsuarioActivity extends AppCompatActivity {
             // Sobreescribir getParams() --> Enviar parámetro de body con POST
 
             // Sobreescribir getHeaders()
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> cabeceras = new HashMap<>();
+                cabeceras.put("log","info");
+                return cabeceras;
+            }
+
 
         };
 
@@ -121,6 +128,10 @@ public class ListaUsuarioActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
 
 
 

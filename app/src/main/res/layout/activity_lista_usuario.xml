@@ -19,13 +19,19 @@
         app:headerLayout="@layout/header"
         app:menu="@menu/appbar"
         android:layout_gravity="start"
-        />
+        >
+
+
+
+    </com.google.android.material.navigation.NavigationView>
 
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
 
         <androidx.recyclerview.widget.RecyclerView
 
