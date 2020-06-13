@@ -1,21 +1,15 @@
 package com.pucp.proyectogrupo6;
 
 import android.content.Context;
-import android.text.Layout;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pucp.proyectogrupo6.Entidades.Incidencia;
-
-import org.w3c.dom.Text;
 
 public class ListaIncidenciasUsuarioAdapter extends RecyclerView.Adapter<ListaIncidenciasUsuarioAdapter.IncidenciaUsuarioViewHolder> {
 
@@ -32,12 +26,15 @@ public class ListaIncidenciasUsuarioAdapter extends RecyclerView.Adapter<ListaIn
 
 
     public static class IncidenciaUsuarioViewHolder extends RecyclerView.ViewHolder{
-        TextView  id_incidencia;
+        TextView  nombre_incidencia;
+        TextView  estado;
+
         Context context;
         public IncidenciaUsuarioViewHolder(View itemView){
             super(itemView);
             context = itemView.getContext();
-            id_incidencia = itemView.findViewById(R.id.Id_incidencia);
+            nombre_incidencia = itemView.findViewById(R.id.nombre_incidencia);
+            estado = itemView.findViewById(R.id.estado);
 
         }
 
@@ -54,8 +51,9 @@ public class ListaIncidenciasUsuarioAdapter extends RecyclerView.Adapter<ListaIn
     public void onBindViewHolder( IncidenciaUsuarioViewHolder holder, int position) {
     Incidencia incidencia = listaincidente[position];
     String texto  = incidencia.getNombre_accidente();
-    holder.id_incidencia.setText(texto);
-
+    String texto1 = incidencia.getEstado();
+    holder.nombre_incidencia.setText(texto);
+    holder.estado.setText(texto1);
 
     }
 

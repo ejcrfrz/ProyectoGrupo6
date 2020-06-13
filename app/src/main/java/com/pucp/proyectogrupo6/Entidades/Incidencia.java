@@ -8,6 +8,17 @@ public class Incidencia {
     private String ubicacion;
     private String foto;
     private int idusuarios;
+    private String estado;
+
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
 
     public int getIdaccidentes() {
         return idaccidentes;

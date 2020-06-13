@@ -23,4 +23,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
 
     }
+
+
+    public void ListaPersonal(View view) {
+        Intent i = new Intent(MainActivity.this,ListaPersonalActivity.class);
+        startActivity(i);
+
+    }
+
 }
