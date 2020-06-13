@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "526147114417",
+    "firebase_url": "https://apps-32c2d.firebaseio.com",
+    "project_id": "apps-32c2d",
+    "storage_bucket": "apps-32c2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526147114417:android:f188fb01a69ddbb7115990",
+        "android_client_info": {
+          "package_name": "com.example.proyectogrupo6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526147114417-6lufk874838dmpnfim1p4frhtdh40u7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV7j96Qx3kwIlXBEXb5ANjmd3OxMHu9zQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526147114417-6lufk874838dmpnfim1p4frhtdh40u7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526147114417:android:c9e9d6e8248b411b115990",
+        "android_client_info": {
+          "package_name": "com.example.universityclass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526147114417-6lufk874838dmpnfim1p4frhtdh40u7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV7j96Qx3kwIlXBEXb5ANjmd3OxMHu9zQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526147114417-6lufk874838dmpnfim1p4frhtdh40u7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526147114417:android:14a92529c94fc0d8115990",
+        "android_client_info": {
+          "package_name": "com.pucp.proyectogrupo6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526147114417-6lufk874838dmpnfim1p4frhtdh40u7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV7j96Qx3kwIlXBEXb5ANjmd3OxMHu9zQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526147114417-6lufk874838dmpnfim1p4frhtdh40u7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
