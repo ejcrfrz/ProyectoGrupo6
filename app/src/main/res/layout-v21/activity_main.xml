@@ -17,11 +17,11 @@
         android:layout_width="203dp"
         android:layout_height="75dp"
         android:layout_marginTop="12dp"
-        android:background="@color/secondaryTextColor"
+        android:background="@color/primaryTextColor"
         android:ems="10"
         android:hint="Usuario "
         android:inputType="textPersonName"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/secondaryColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -41,16 +41,15 @@
         android:layout_marginTop="12dp"
         android:backgroundTint="@color/primaryColor"
         android:onClick="validarLogin"
-        android:shadowColor="@color/primaryColor"
+        android:shadowColor="@color/primaryTextColor"
         android:text="Ingresar"
         android:textColor="@color/primaryTextColor"
         android:textColorHint="@color/primaryTextColor"
-        android:textColorLink="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewError"
-        app:rippleColor="@color/primaryColor"
-        app:strokeColor="@color/primaryColor" />
+        app:rippleColor="@color/primaryTextColor"
+        app:strokeColor="@color/primaryDarkColor" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -62,13 +61,15 @@
         android:background="@color/secondaryTextColor"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword"
+
         android:textColor="@color/secondaryColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUsername">
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
