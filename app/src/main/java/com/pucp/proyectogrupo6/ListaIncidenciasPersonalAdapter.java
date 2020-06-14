@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +33,11 @@ public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaI
         TextView descripcion;
         TextView ubicacion;
         TextView foto;
+        TextView comentario;
+        TextView idAccidente;
         //buttons
         Button buttonVerDetalle;
+        Button buttonHecho;
 
         Context context;
 
@@ -47,14 +51,18 @@ public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaI
             descripcion = itemView.findViewById(R.id.descripcion);
             foto = itemView.findViewById(R.id.foto);
             ubicacion = itemView.findViewById(R.id.ubicacion);
+            comentario = itemView.findViewById(R.id.comentario);
+            idAccidente = itemView.findViewById(R.id.idAccidente);
             //Referencia a botones:
             buttonVerDetalle = itemView.findViewById(R.id.buttonDetalle);
+            buttonHecho = itemView.findViewById(R.id.buttonHecho);
+
         }
 
         void setOnClickListeners() {
 
             buttonVerDetalle.setOnClickListener(this);
-
+            buttonHecho.setOnClickListener(this);
 
         }
 
@@ -71,9 +79,16 @@ public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaI
                     intent.putExtra("descripcion", descripcion.getText());
                     intent.putExtra("foto", foto.getText());
                     intent.putExtra("ubicacion", ubicacion.getText());
+                    intent.putExtra("comentario", comentario.getText());
 
                     //intent.putExtra("listatrabajos",listTrabajos);
                     context.startActivity(intent);
+                    break;
+
+                case R.id.buttonHecho:
+                    Intent intent1 = new Intent(context, AgregarComentarioActivity.class);
+                    intent1.putExtra("idAccidente", idAccidente.getText());
+                    context.startActivity(intent1);
                     break;
 
             }
@@ -99,13 +114,14 @@ public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaI
         String getdescripcion = incidencia.getDescripcion();
         String getfoto = incidencia.getFoto();
         String getubicacion = incidencia.getUbicacion();
+        String getidaccidente = String.valueOf(incidencia.getIdaccidentes());
 
         holder.nombre_incidencia.setText(getnomb_accidente);
         holder.estado.setText(getestado);
         holder.descripcion.setText(getdescripcion);
         holder.foto.setText(getfoto);
         holder.ubicacion.setText(getubicacion);
-
+        holder.idAccidente.setText(getidaccidente);
         holder.setOnClickListeners();
 
     }

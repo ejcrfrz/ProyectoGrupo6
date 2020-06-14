@@ -9,6 +9,16 @@ public class Incidencia {
     private String foto;
     private int idusuarios;
     private String estado;
+    private String comentario;
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
 
 
     public String getEstado() {

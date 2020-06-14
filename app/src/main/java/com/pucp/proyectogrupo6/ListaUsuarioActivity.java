@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -42,6 +43,7 @@ public class ListaUsuarioActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
@@ -75,6 +77,27 @@ public class ListaUsuarioActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        Listaincidentes();
+
+        swipeRefreshLayout = findViewById(R.id.swipe);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Listaincidentes();
+
+                //listaIncidenciasPersonalAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+
+
+    }
+
+    //Lista de incidentes
+    public void Listaincidentes() {
+
         //---------------------------------------------------------------------------------------
         //OBTENER LISTA DE INCIDENCIAS
         // URL Web service 2: Listar Trabajos
@@ -125,13 +148,7 @@ public class ListaUsuarioActivity extends AppCompatActivity {
 
 
 
-
-
     }
-
-
-
-
 
 
 

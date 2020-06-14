@@ -65,21 +65,21 @@
         android:text="Detalle"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonEditar"
         app:layout_constraintStart_toEndOf="@+id/estado"
         app:layout_constraintTop_toBottomOf="@+id/nombre_incidencia" />
 
     <Button
-        android:id="@+id/buttonEditar"
+        android:id="@+id/buttonHecho"
         android:layout_width="74dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="32dp"
         android:background="@drawable/layout_bg2"
         android:fontFamily="@font/andika"
-        android:text="Cambiar"
+        android:text="Hecho"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.358"
+        app:layout_constraintStart_toEndOf="@+id/buttonDetalle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.814" />
 
@@ -121,6 +121,32 @@
         app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toEndOf="@+id/descripcion"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/comentario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32" />
+
+    <TextView
+        android:id="@+id/idAccidente"
+        android:layout_width="77dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="24dp"
+
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/estado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nombre_incidencia"
         app:layout_constraintVertical_bias="0.0" />
 
 

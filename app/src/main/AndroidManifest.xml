@@ -13,9 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".VerDetalleActivity"
+        <activity android:name=".AgregarComentarioActivity"
             android:parentActivityName=".ListaPersonalActivity"
             ></activity>
+        <activity
+            android:name=".VerDetalleActivity"
+            android:parentActivityName=".ListaPersonalActivity" />
         <activity
             android:name=".ListaPersonalActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

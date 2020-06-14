@@ -38,7 +38,7 @@ public class ListaPersonalActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     SwipeRefreshLayout swipeRefreshLayout;
-    ListaIncidenciasPersonalAdapter listaIncidenciasPersonalAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +109,7 @@ public class ListaPersonalActivity extends AppCompatActivity {
                         Incidencia[] listaincidente = gson.fromJson(response,Incidencia[].class);
                         Log.d("le",Integer.toString(listaincidente.length));
 
-                         listaIncidenciasPersonalAdapter = new ListaIncidenciasPersonalAdapter(listaincidente,ListaPersonalActivity.this);
+                        ListaIncidenciasPersonalAdapter listaIncidenciasPersonalAdapter = new ListaIncidenciasPersonalAdapter(listaincidente,ListaPersonalActivity.this);
                         RecyclerView recyclerView = findViewById(R.id.recyclerView);
                         recyclerView.setAdapter(listaIncidenciasPersonalAdapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(ListaPersonalActivity.this));

@@ -13,6 +13,7 @@ public class VerDetalleActivity extends AppCompatActivity {
     String textViewMaxSalary = "";
     String foto = "";
     String ubicacion = "";
+    String comentario = "";
 
 
     @Override
@@ -28,6 +29,7 @@ public class VerDetalleActivity extends AppCompatActivity {
             descripcion = extras.getString("descripcion");
             foto = extras.getString("foto");
             ubicacion = extras.getString("ubicacion");
+            comentario = extras.getString("comentario");
 
         }
 
@@ -36,13 +38,15 @@ public class VerDetalleActivity extends AppCompatActivity {
         TextView textViewverUbicacion = findViewById(R.id.verUbicacion);
         TextView textViewverFoto = findViewById(R.id.verFoto);
         TextView textViewverEstado = findViewById(R.id.verEstado);
+        TextView textViewverComentario = findViewById(R.id.verComentario);
+
 
         textViewverNombre.setText(nombre_incidencia);
         textViewverDescripcion.setText(descripcion);
         textViewverUbicacion.setText(ubicacion);
         textViewverFoto.setText(foto);
         textViewverEstado.setText(estado);
-
+        textViewverComentario.setText(comentario);
 
     }
 
