@@ -21,7 +21,7 @@
 
         </activity>
         <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".MainActivity">
+
 
         <activity android:name=".AgregarComentarioActivity"
             android:parentActivityName=".ListaPersonalActivity"
