@@ -68,7 +68,7 @@ public class ListaUsuarioActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.nav_crear:
-                        Intent i = new Intent(ListaUsuarioActivity.this,CrearIncidenciaUsuarioActivity.class);
+                        Intent i = new Intent(ListaUsuarioActivity.this,RegisterIncidentActivity.class);
                         startActivity(i);
                         break;
                     case R.id.nav_lista:
