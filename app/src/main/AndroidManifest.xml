@@ -21,7 +21,6 @@
 
         </activity>
         <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".MainActivity" />
 
         <activity android:name=".AgregarComentarioActivity"
             android:parentActivityName=".ListaPersonalActivity"
@@ -47,7 +46,11 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".MainActivity2">
+
+
+
+        </activity>
         <activity android:name=".ActivityLogin">
 
         </activity>

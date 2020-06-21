@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:backgroundTint="@color/primaryColor"
-        android:onClick="validarLogin"
+        android:onClick="ingresarOnClick"
         android:shadowColor="@color/primaryTextColor"
         android:text="Ingresar"
         android:textColor="@color/primaryTextColor"

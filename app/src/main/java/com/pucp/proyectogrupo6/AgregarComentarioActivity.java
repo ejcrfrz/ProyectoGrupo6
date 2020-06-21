@@ -76,7 +76,7 @@ public class AgregarComentarioActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("errorVolley", error.getMessage());
+                        Log.e("errorVolley","");
                     }
                 }
         ) {
