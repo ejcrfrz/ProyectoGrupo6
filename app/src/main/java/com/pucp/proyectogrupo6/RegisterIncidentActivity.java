@@ -14,13 +14,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.pucp.proyectogrupo6.Entidades.Incidencia;
 
 public class RegisterIncidentActivity extends AppCompatActivity {
 
@@ -91,6 +96,31 @@ public class RegisterIncidentActivity extends AppCompatActivity {
             imagen.setImageURI(path);
         }
 
+
+    }
+
+
+    public void guardarIncidencia(View view){
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        Incidencia incidencia = new Incidencia();
+        String nombreIncidencia = findViewById(R.id.editTextNombreIncidencia).toString();
+        String idIncidencia = findViewById(R.id.idAccidente).toString();
+        incidencia.setNombreAccidente(idIncidencia);
+        incidencia.setNombreAccidente(nombreIncidencia);
+        databaseReference.child("Incidencias").child(idIncidencia).setValue(incidencia).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(), "Guardado exitoso",Toast.LENGTH_SHORT);
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Upss, Hubo problemas",Toast.LENGTH_SHORT);
+            }
+        });
 
     }
 }
