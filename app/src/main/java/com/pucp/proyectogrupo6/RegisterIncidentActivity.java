@@ -25,6 +25,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.pucp.proyectogrupo6.Entidades.Incidencia;
 
 public class RegisterIncidentActivity extends AppCompatActivity {
@@ -32,6 +35,7 @@ public class RegisterIncidentActivity extends AppCompatActivity {
     String latitud;
     String altitud;
     ImageView imagen;
+    Uri path;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +96,7 @@ public class RegisterIncidentActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
-            Uri path =  data.getData();
+            path =  data.getData();
             imagen.setImageURI(path);
         }
 
@@ -102,14 +106,28 @@ public class RegisterIncidentActivity extends AppCompatActivity {
 
     public void guardarIncidencia(View view){
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Incidencias");
 
         Incidencia incidencia = new Incidencia();
-        String nombreIncidencia = findViewById(R.id.editTextNombreIncidencia).toString();
-        String idIncidencia = findViewById(R.id.idAccidente).toString();
-        incidencia.setNombreAccidente(idIncidencia);
-        incidencia.setNombreAccidente(nombreIncidencia);
-        databaseReference.child("Incidencias").child(idIncidencia).setValue(incidencia).addOnSuccessListener(new OnSuccessListener<Void>() {
+        String nombreIndicencia = findViewById(R.id.editTextNombreIncidencia).toString();
+        String descripcion = findViewById( R.id.editTextDescripcionIncidencia).toString();
+        String ubicacion = findViewById(R.id.textViewLocalizacion).toString();
+        DatabaseReference dbPush = databaseReference.push();
+        int idIncidencia = Integer.valueOf(dbPush.getKey());
+
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        String fileName = "img-"+idIncidencia;
+        StorageReference storageRef = firebaseStorage.getReference().child("Img-Incidencias/" + fileName);
+        UploadTask uploadTask = storageRef.putFile(path);
+
+
+        incidencia.setNombre_accidente(nombreIndicencia);
+        incidencia.setDescripcion(descripcion);
+        incidencia.setUbicacion(ubicacion);
+        incidencia.setFoto(path.toString());
+        incidencia.setIdaccidentes(idIncidencia);
+
+        dbPush.setValue(incidencia).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(getApplicationContext(), "Guardado exitoso",Toast.LENGTH_SHORT);
