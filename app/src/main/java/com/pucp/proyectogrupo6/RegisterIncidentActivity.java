@@ -113,7 +113,7 @@ public class RegisterIncidentActivity extends AppCompatActivity {
         String descripcion = findViewById( R.id.editTextDescripcionIncidencia).toString();
         String ubicacion = findViewById(R.id.textViewLocalizacion).toString();
         DatabaseReference dbPush = databaseReference.push();
-        int idIncidencia = Integer.valueOf(dbPush.getKey());
+        String idIncidencia = dbPush.getKey();
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         String fileName = "img-"+idIncidencia;
