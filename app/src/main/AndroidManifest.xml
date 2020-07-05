@@ -21,7 +21,7 @@
 
         </activity>
         <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".MainActivity">
+
 
         <activity android:name=".AgregarComentarioActivity"
             android:parentActivityName=".ListaPersonalActivity"
@@ -53,7 +53,9 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+
 
         <meta-data
             android:name="preloaded_fonts"
