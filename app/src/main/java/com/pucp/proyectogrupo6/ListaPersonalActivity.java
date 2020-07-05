@@ -63,7 +63,7 @@ public class ListaPersonalActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.nav_crear:
-                        Intent i = new Intent(ListaPersonalActivity.this,CrearIncidenciaUsuarioActivity.class);
+                        Intent i = new Intent(ListaPersonalActivity.this,RegisterIncidentActivity.class);
                         startActivity(i);
                         break;
                     case R.id.nav_lista:
@@ -120,7 +120,7 @@ public class ListaPersonalActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("errorVolley",error.getMessage());
+                        Log.e("errorVolley","cero");
                     }
                 }
         ){

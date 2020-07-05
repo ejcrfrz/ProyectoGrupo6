@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void asd(View view) {
-        Intent i = new Intent(MainActivity.this,ListaUsuarioActivity.class);
+        Intent i = new Intent(MainActivity.this,ActivityLogin.class);
         startActivity(i);
 
     }

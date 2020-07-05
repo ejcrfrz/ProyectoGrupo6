@@ -49,7 +49,5 @@ public class PantallaInicioActivity extends AppCompatActivity {
                 finish();
             }
         },SPLASH_SCREEN);
-
-
     }
 }
