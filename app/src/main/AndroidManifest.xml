@@ -22,7 +22,6 @@
         </activity>
         <activity android:name=".RegisterUserActivity" />
 
-
         <activity android:name=".AgregarComentarioActivity"
             android:parentActivityName=".ListaPersonalActivity"
             ></activity>
@@ -47,6 +46,8 @@
             </intent-filter>
 
         </activity>
+
+
         <activity android:name=".MainActivity2">
 
 
@@ -55,11 +56,11 @@
         <activity android:name=".ActivityLogin">
 
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
-
 
         <meta-data
             android:name="preloaded_fonts"
