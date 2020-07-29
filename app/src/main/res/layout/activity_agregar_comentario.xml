@@ -35,7 +35,7 @@
         android:id="@+id/textComentario"
         android:layout_width="168dp"
         android:layout_height="88dp"
-        android:text="TextView"
+        android:text=""
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"

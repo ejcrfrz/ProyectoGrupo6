@@ -6,10 +6,23 @@ public class Incidencia {
     private  String nombre_accidente;
     private String descripcion;
     private String ubicacion;
-    private String foto;
-    private int idusuario;
+    private String idusuario;
     private String estado;
     private String comentario;
+    private String foto;
+
+
+
+
+    public String getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(String idusuario) {
+        this.idusuario = idusuario;
+    }
+
+
 
     public String getComentario() {
         return comentario;
@@ -64,13 +77,6 @@ public class Incidencia {
         this.nombre_accidente = nombre_accidente;
     }
 
-    public int getIdusuario() {
-        return idusuario;
-    }
-
-    public void setIdusuario(int idusuario) {
-        this.idusuario = idusuario;
-    }
 
     public String getIdaccidentes() {
         return idaccidentes;

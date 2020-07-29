@@ -35,12 +35,19 @@ public class RegisterIncidentActivity extends AppCompatActivity {
     String latitud;
     String altitud;
     ImageView imagen;
+    String iduser="";
     Uri path;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_incident);
         imagen = findViewById(R.id.imageViewFotoIncidencia);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            iduser = extras.getString("id");
+
+        }
 
     }
 
@@ -106,12 +113,16 @@ public class RegisterIncidentActivity extends AppCompatActivity {
 
     public void guardarIncidencia(View view){
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Incidencias");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("incidentes");
 
         Incidencia incidencia = new Incidencia();
-        String nombreIndicencia = findViewById(R.id.editTextNombreIncidencia).toString();
+
+        EditText editText_nombre = findViewById(R.id.editTextNombreIncidencia);
+        String nombreIndicencia = editText_nombre.toString();
+
         String descripcion = findViewById( R.id.editTextDescripcionIncidencia).toString();
         String ubicacion = findViewById(R.id.textViewLocalizacion).toString();
+
         DatabaseReference dbPush = databaseReference.push();
         String idIncidencia = dbPush.getKey();
 
@@ -126,11 +137,19 @@ public class RegisterIncidentActivity extends AppCompatActivity {
         incidencia.setUbicacion(ubicacion);
         incidencia.setFoto(path.toString());
         incidencia.setIdaccidentes(idIncidencia);
+        incidencia.setComentario("");
+        incidencia.setEstado("Registrado");
+        incidencia.setIdusuario(iduser);
+
+
 
         dbPush.setValue(incidencia).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(getApplicationContext(), "Guardado exitoso",Toast.LENGTH_SHORT);
+                Intent i = new Intent(RegisterIncidentActivity.this,ListaPersonalActivity.class);
+                startActivity(i);
+                finish();
             }
         })
         .addOnFailureListener(new OnFailureListener() {

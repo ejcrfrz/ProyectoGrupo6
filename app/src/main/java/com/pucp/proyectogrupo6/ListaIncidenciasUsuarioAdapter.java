@@ -11,12 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pucp.proyectogrupo6.Entidades.Incidencia;
 
+import java.util.List;
+
 public class ListaIncidenciasUsuarioAdapter extends RecyclerView.Adapter<ListaIncidenciasUsuarioAdapter.IncidenciaUsuarioViewHolder> {
 
-    Incidencia[] listaincidente;
+
+    List<Incidencia> listaincidente;
     Context contexto;
 
-    public ListaIncidenciasUsuarioAdapter(Incidencia[] lista, Context c) {
+    public ListaIncidenciasUsuarioAdapter(List<Incidencia> lista, Context c) {
 
         this.listaincidente = lista;
         this.contexto = c;
@@ -49,7 +52,7 @@ public class ListaIncidenciasUsuarioAdapter extends RecyclerView.Adapter<ListaIn
 
     @Override
     public void onBindViewHolder( IncidenciaUsuarioViewHolder holder, int position) {
-    Incidencia incidencia = listaincidente[position];
+    Incidencia incidencia = listaincidente.get(position);
     String texto  = incidencia.getNombre_accidente();
     String texto1 = incidencia.getEstado();
     holder.nombre_incidencia.setText(texto);
@@ -60,7 +63,7 @@ public class ListaIncidenciasUsuarioAdapter extends RecyclerView.Adapter<ListaIn
     @Override
     public int getItemCount() {
 
-        return listaincidente.length;
+        return listaincidente.size();
     }
 
 
