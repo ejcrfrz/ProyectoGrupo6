@@ -88,6 +88,7 @@ public class ListaPersonalActivity extends AppCompatActivity {
                 return true;
             }
         });
+        navigationView.setCheckedItem(R.id.nav_lista);
         //--------------------------------------------------------
 
         mDatabase = FirebaseDatabase.getInstance().getReference();

@@ -90,6 +90,7 @@ public class ListaUsuarioActivity extends AppCompatActivity {
                 return true;
             }
         });
+        navigationView.setCheckedItem(R.id.nav_lista);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         editText_name = findViewById(R.id.Nombre);

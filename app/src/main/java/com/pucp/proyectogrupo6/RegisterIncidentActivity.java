@@ -40,6 +40,7 @@ public class RegisterIncidentActivity extends AppCompatActivity {
     String iduser="";
     Uri path;
     String user;
+    FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +48,7 @@ public class RegisterIncidentActivity extends AppCompatActivity {
         imagen = findViewById(R.id.imageViewFotoIncidencia);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser =firebaseAuth.getCurrentUser();
+         currentUser =firebaseAuth.getCurrentUser();
 
         if(currentUser != null){
             currentUser.getDisplayName();

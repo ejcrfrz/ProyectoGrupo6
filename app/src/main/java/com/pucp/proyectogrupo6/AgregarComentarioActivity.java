@@ -117,6 +117,8 @@ public class AgregarComentarioActivity extends AppCompatActivity {
         //------------------------------------------------------------
 
         mDatabase.child("incidentes/"+idAccidente).child("comentario").setValue(comentario);
+        mDatabase.child("incidentes/"+idAccidente).child("estado").setValue("Realizado");
+
         Intent intent2 = new Intent(AgregarComentarioActivity.this,ListaPersonalActivity.class);
         setResult(RESULT_OK,intent2);
         finish();
