@@ -6,16 +6,28 @@ import java.time.LocalDate;
 public class Usuario implements Serializable {
     private String idusuario;
     private String correo;
-    private String numeroDeCelular;
 
-    private String codigo;
     private String nombre;
-    private String apellido;
-
+    private int permiso;
     private int estadoCuenta;
     private String contrasena;
-    private int infraestructura;
-    private String foto_url;
+    private int infraestructura = 0;
+
+    public int getInfraestructura() {
+        return infraestructura;
+    }
+
+    public void setInfraestructura(int infraestructura) {
+        this.infraestructura = infraestructura;
+    }
+    public int getPermiso() {
+        return permiso;
+    }
+
+    public void setPermiso(int permiso) {
+        this.permiso = permiso;
+    }
+
 
 
 
@@ -29,21 +41,8 @@ public class Usuario implements Serializable {
         this.correo = correo;
     }
 
-    public String getNumeroDeCelular() {
-        return numeroDeCelular;
-    }
 
-    public void setNumeroDeCelular(String numeroDeCelular) {
-        this.numeroDeCelular = numeroDeCelular;
-    }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
 
     public String getNombre() {
         return nombre;
@@ -51,14 +50,6 @@ public class Usuario implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
 
@@ -80,29 +71,5 @@ public class Usuario implements Serializable {
     }
 
 
-    public String getFoto_url() {
-        return foto_url;
-    }
 
-    public void setFoto_url(String foto_url) {
-        this.foto_url = foto_url;
-    }
-
-
-
-    public int getInfraestructura() {
-        return infraestructura;
-    }
-
-    public void setInfraestructura(int infraestructura) {
-        this.infraestructura = infraestructura;
-    }
-
-    public String getIdusuario() {
-        return idusuario;
-    }
-
-    public void setIdusuario(String idusuario) {
-        this.idusuario = idusuario;
-    }
 }

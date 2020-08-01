@@ -82,7 +82,42 @@
             android:fontFamily="@font/andika"
             android:text="Lista incidentes :"
             android:textSize="25sp" />
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="83dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="19dp"
+            android:text="Bienvenido:" />
 
+        <TextView
+            android:id="@+id/Nombre"
+            android:layout_width="114dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="14dp"
+            android:layout_toStartOf="@+id/buttonSesion"
+            android:text="" />
+        <Button
+            android:id="@+id/buttonSesion"
+            android:layout_width="75dp"
+            android:layout_height="31dp"
+            android:layout_alignParentTop="true"
+
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="37dp"
+            android:background="@drawable/bg_button_white"
+            android:onClick="CerraSesion"
+            android:text="Cerrar Sesion"
+            android:textAllCaps="false"
+            android:textColor="#323131"
+            android:textSize="10sp" />
 
     </RelativeLayout>
 
