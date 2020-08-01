@@ -36,6 +36,7 @@ public class RegisterIncidentActivity extends AppCompatActivity {
     String altitud;
     ImageView imagen;
     Uri path;
+    String user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,12 +116,15 @@ public class RegisterIncidentActivity extends AppCompatActivity {
         DatabaseReference dbPush = databaseReference.push();
         String idIncidencia = dbPush.getKey();
 
+        Intent intent = getIntent();
+        user = intent.getStringExtra("idUsuario");
+
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         String fileName = "img-"+idIncidencia;
         StorageReference storageRef = firebaseStorage.getReference().child("Img-Incidencias/" + fileName);
         UploadTask uploadTask = storageRef.putFile(path);
 
-
+        incidencia.setIdusuario(user);
         incidencia.setNombre_accidente(nombreIndicencia);
         incidencia.setDescripcion(descripcion);
         incidencia.setUbicacion(ubicacion);

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Usuario implements Serializable {
-    private int idusuario;
+    private String idusuario;
     private String correo;
     private String numeroDeCelular;
 
@@ -20,13 +20,6 @@ public class Usuario implements Serializable {
 
 
 
-    public int getIdusuario() {
-        return idusuario;
-    }
-
-    public void setIdusuario(int idusuario) {
-        this.idusuario = idusuario;
-    }
 
     public String getCorreo() {
         return correo;
@@ -103,5 +96,13 @@ public class Usuario implements Serializable {
 
     public void setInfraestructura(int infraestructura) {
         this.infraestructura = infraestructura;
+    }
+
+    public String getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(String idusuario) {
+        this.idusuario = idusuario;
     }
 }

@@ -55,4 +55,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.2.2'
 
     implementation 'com.google.firebase:firebase-storage:19.1.1'
+
 }

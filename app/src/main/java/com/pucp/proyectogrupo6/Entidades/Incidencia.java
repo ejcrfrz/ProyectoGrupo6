@@ -3,11 +3,11 @@ package com.pucp.proyectogrupo6.Entidades;
 public class Incidencia {
 
     private String idaccidentes;
-    private  String nombre_accidente;
+    private String nombre_accidente;
     private String descripcion;
     private String ubicacion;
     private String foto;
-    private int idusuario;
+    private String idusuario;
     private String estado;
     private String comentario;
 
@@ -64,13 +64,7 @@ public class Incidencia {
         this.nombre_accidente = nombre_accidente;
     }
 
-    public int getIdusuario() {
-        return idusuario;
-    }
 
-    public void setIdusuario(int idusuario) {
-        this.idusuario = idusuario;
-    }
 
     public String getIdaccidentes() {
         return idaccidentes;
@@ -78,5 +72,13 @@ public class Incidencia {
 
     public void setIdaccidentes(String idaccidentes) {
         this.idaccidentes = idaccidentes;
+    }
+
+    public String getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(String idusuario) {
+        this.idusuario = idusuario;
     }
 }
