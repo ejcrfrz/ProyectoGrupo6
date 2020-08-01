@@ -23,6 +23,8 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -44,7 +46,18 @@ public class RegisterIncidentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_incident);
         imagen = findViewById(R.id.imageViewFotoIncidencia);
 
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser =firebaseAuth.getCurrentUser();
+
+        if(currentUser != null){
+            currentUser.getDisplayName();
+            currentUser.getEmail();
+            currentUser.getUid();
+        }
+
         Bundle extras = getIntent().getExtras();
+
+
         if (extras != null) {
             iduser = extras.getString("id");
 
@@ -118,12 +131,13 @@ public class RegisterIncidentActivity extends AppCompatActivity {
 
         Incidencia incidencia = new Incidencia();
 
-        EditText editText_nombre = findViewById(R.id.editTextNombreIncidencia);
-        String nombreIndicencia = editText_nombre.toString();
+        EditText nombre = findViewById(R.id.editTextNombreIncidencia);
+        String nombreIndicencia = nombre.getText().toString();
 
-        String descripcion = findViewById( R.id.editTextDescripcionIncidencia).toString();
-        String ubicacion = findViewById(R.id.textViewLocalizacion).toString();
-
+        EditText descripcionEdit = findViewById( R.id.editTextDescripcionIncidencia);
+        String descripcion = descripcionEdit.getText().toString();
+        TextView ubicacionTextView = findViewById(R.id.textViewLocalizacion);
+        String ubicacion = ubicacionTextView.getText().toString();
         DatabaseReference dbPush = databaseReference.push();
         String idIncidencia = dbPush.getKey();
 
@@ -139,11 +153,11 @@ public class RegisterIncidentActivity extends AppCompatActivity {
         incidencia.setNombre_accidente(nombreIndicencia);
         incidencia.setDescripcion(descripcion);
         incidencia.setUbicacion(ubicacion);
-        incidencia.setFoto(path.toString());
+        incidencia.setFoto(fileName);
         incidencia.setIdaccidentes(idIncidencia);
         incidencia.setComentario("");
         incidencia.setEstado("Registrado");
-        incidencia.setIdusuario(iduser);
+        incidencia.setIdusuario(currentUser.getUid());
 
 
 
