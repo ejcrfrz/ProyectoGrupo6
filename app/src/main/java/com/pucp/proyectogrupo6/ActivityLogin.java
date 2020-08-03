@@ -33,7 +33,17 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        List<AuthUI.IdpConfig> listaProveeedores = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setLogo(R.drawable.logo_app)
+                        .setTheme(R.style.AppTheme2)
+                        .setAvailableProviders(listaProveeedores)
+                        .build(),1
+        );
 
     }
     public void ingresarOnClick(View view) {
