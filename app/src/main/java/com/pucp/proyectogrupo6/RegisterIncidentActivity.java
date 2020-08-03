@@ -46,7 +46,6 @@ public class RegisterIncidentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_incident);
         imagen = findViewById(R.id.imageViewFotoIncidencia);
-
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
          currentUser =firebaseAuth.getCurrentUser();
 
@@ -77,7 +76,7 @@ public class RegisterIncidentActivity extends AppCompatActivity {
                 public void onSuccess(Location location) {
                     if(location != null){
                         TextView textView  = findViewById(R.id.textViewLocalizacion);
-                        String ubicacion = "Latitud: " + location.getLatitude() + "   Longitud: "
+                        String ubicacion = "Latitud: " + location.getLatitude() + "\n Longitud: "
                                 + location.getAltitude();
                         textView.setText(ubicacion);
                     }

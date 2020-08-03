@@ -31,7 +31,6 @@
         <activity
             android:name=".ListaPersonalActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".CrearIncidenciaUsuarioActivity" />
         <activity
             android:name=".ListaUsuarioActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
