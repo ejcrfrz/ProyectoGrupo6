@@ -44,7 +44,7 @@ public class ActivityLogin extends AppCompatActivity {
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setLogo(R.drawable.logo_app)
-                        .setTheme(R.style.AppTheme)
+                        .setTheme(R.style.AppTheme2)
                         .setAvailableProviders(listaProveeedores)
                         .build(),1
         );
@@ -88,6 +88,7 @@ public class ActivityLogin extends AppCompatActivity {
                                   startActivity(new Intent(ActivityLogin.this,ListaPersonalActivity.class));
 
                               }
+
                           }
                       }
 

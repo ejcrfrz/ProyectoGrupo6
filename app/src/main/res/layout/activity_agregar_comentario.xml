@@ -33,17 +33,18 @@
 
     <EditText
         android:id="@+id/textComentario"
-        android:layout_width="168dp"
-        android:layout_height="88dp"
-        android:text=""
+        android:layout_width="287dp"
+        android:layout_height="100dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:text=""
         app:layout_constraintBottom_toTopOf="@+id/buttonRealizado"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.607" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
