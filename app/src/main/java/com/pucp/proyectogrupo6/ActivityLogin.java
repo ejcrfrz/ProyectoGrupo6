@@ -46,7 +46,8 @@ public class ActivityLogin extends AppCompatActivity {
                         .setLogo(R.drawable.logo_app)
                         .setTheme(R.style.AppTheme)
                         .setAvailableProviders(listaProveeedores)
-                        .build(),1);
+                        .build(),1
+        );
 
 
     }
@@ -66,31 +67,30 @@ public class ActivityLogin extends AppCompatActivity {
                     final String name =currentUser.getDisplayName();
                     final String email=currentUser.getEmail();
                     Log.d("infoApp",databaseReference.child("usuario/"+uid).getDatabase().toString());
-
-
-                  databaseReference.child("usuarios").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                  databaseReference.child("usuarios/"+uid).addListenerForSingleValueEvent(new ValueEventListener() {
 
                       @Override
                       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                           if(dataSnapshot.getValue()==null){
                               Log.d("infoApp2","inicio de sesión exitoso!");
                               Usuario usuario=new Usuario();
                               usuario.setNombre(name);
                               usuario.setCorreo(email);
+
                               databaseReference.child("usuarios").child(uid).setValue(usuario);
 
                           }
                           if (dataSnapshot.getValue()!=null){
                               int inf=dataSnapshot.child("infraestructura").getValue(Integer.class);
+                              Log.d("infraestructura","mensage");
                               if (inf ==1){
                                   Log.d("infraestructura","mensage");
+                                  startActivity(new Intent(ActivityLogin.this,ListaPersonalActivity.class));
+
                               }
                           }
-
-
-
                       }
+
 
                       @Override
                       public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -118,9 +118,14 @@ public class ActivityLogin extends AppCompatActivity {
                                 });
                         this.finish();
                     }
-                    startActivity(new Intent(ActivityLogin.this,ListaUsuarioActivity.class));
-                }else{
 
+                    //FALTA DEFINIR POR PERMISOS
+
+                                startActivity(new Intent(ActivityLogin.this,ListaUsuarioActivity.class));
+
+
+
+                }else{
 
                 }
 

@@ -15,6 +15,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -27,7 +29,7 @@ public class AgregarComentarioActivity extends AppCompatActivity {
 
     String idAccidente = "";
 
-
+    DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,8 @@ public class AgregarComentarioActivity extends AppCompatActivity {
 
         }
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
     }
 
 
@@ -47,6 +51,7 @@ public class AgregarComentarioActivity extends AppCompatActivity {
         TextView coment = findViewById(R.id.textComentario);
          String comentario = coment.getText().toString();
         //------------------------------------------------------------
+        /*
         JSONObject jsonBodyObj = new JSONObject();
         try{
             jsonBodyObj.put("idaccidentes", idAccidente);
@@ -108,8 +113,12 @@ public class AgregarComentarioActivity extends AppCompatActivity {
 
         requestQueue.add(stringRequest);
 
-
+*/
         //------------------------------------------------------------
+
+        mDatabase.child("incidentes/"+idAccidente).child("comentario").setValue(comentario);
+        mDatabase.child("incidentes/"+idAccidente).child("estado").setValue("Realizado");
+
         Intent intent2 = new Intent(AgregarComentarioActivity.this,ListaPersonalActivity.class);
         setResult(RESULT_OK,intent2);
         finish();

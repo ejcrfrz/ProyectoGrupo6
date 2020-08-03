@@ -23,6 +23,8 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -35,12 +37,31 @@ public class RegisterIncidentActivity extends AppCompatActivity {
     String latitud;
     String altitud;
     ImageView imagen;
+    String iduser="";
     Uri path;
+    String user;
+    FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_incident);
         imagen = findViewById(R.id.imageViewFotoIncidencia);
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+         currentUser =firebaseAuth.getCurrentUser();
+
+        if(currentUser != null){
+            currentUser.getDisplayName();
+            currentUser.getEmail();
+            currentUser.getUid();
+        }
+
+        Bundle extras = getIntent().getExtras();
+
+
+        if (extras != null) {
+            iduser = extras.getString("id");
+
+        }
 
     }
 
@@ -55,7 +76,7 @@ public class RegisterIncidentActivity extends AppCompatActivity {
                 public void onSuccess(Location location) {
                     if(location != null){
                         TextView textView  = findViewById(R.id.textViewLocalizacion);
-                        String ubicacion = "Latitud: " + location.getLatitude() + "   Longitud: "
+                        String ubicacion = "Latitud: " + location.getLatitude() + "\n Longitud: "
                                 + location.getAltitude();
                         textView.setText(ubicacion);
                     }
@@ -106,31 +127,47 @@ public class RegisterIncidentActivity extends AppCompatActivity {
 
     public void guardarIncidencia(View view){
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Incidencias");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("incidentes");
 
         Incidencia incidencia = new Incidencia();
-        String nombreIndicencia = findViewById(R.id.editTextNombreIncidencia).toString();
-        String descripcion = findViewById( R.id.editTextDescripcionIncidencia).toString();
-        String ubicacion = findViewById(R.id.textViewLocalizacion).toString();
+
+        EditText nombre = findViewById(R.id.editTextNombreIncidencia);
+        String nombreIndicencia = nombre.getText().toString();
+
+        EditText descripcionEdit = findViewById( R.id.editTextDescripcionIncidencia);
+        String descripcion = descripcionEdit.getText().toString();
+        TextView ubicacionTextView = findViewById(R.id.textViewLocalizacion);
+        String ubicacion = ubicacionTextView.getText().toString();
         DatabaseReference dbPush = databaseReference.push();
         String idIncidencia = dbPush.getKey();
+
+        Intent intent = getIntent();
+        user = intent.getStringExtra("idUsuario");
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         String fileName = "img-"+idIncidencia;
         StorageReference storageRef = firebaseStorage.getReference().child("Img-Incidencias/" + fileName);
         UploadTask uploadTask = storageRef.putFile(path);
 
-
+        incidencia.setIdusuario(user);
         incidencia.setNombre_accidente(nombreIndicencia);
         incidencia.setDescripcion(descripcion);
         incidencia.setUbicacion(ubicacion);
-        incidencia.setFoto(path.toString());
+        incidencia.setFoto(fileName);
         incidencia.setIdaccidentes(idIncidencia);
+        incidencia.setComentario("");
+        incidencia.setEstado("Registrado");
+        incidencia.setIdusuario(currentUser.getUid());
+
+
 
         dbPush.setValue(incidencia).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(getApplicationContext(), "Guardado exitoso",Toast.LENGTH_SHORT);
+                Intent i = new Intent(RegisterIncidentActivity.this,ListaPersonalActivity.class);
+                startActivity(i);
+                finish();
             }
         })
         .addOnFailureListener(new OnFailureListener() {

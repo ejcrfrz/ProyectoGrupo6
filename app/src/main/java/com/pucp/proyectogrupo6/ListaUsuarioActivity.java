@@ -22,6 +22,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -30,10 +32,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.pucp.proyectogrupo6.Entidades.Incidencia;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ListaUsuarioActivity extends AppCompatActivity {
@@ -44,8 +54,11 @@ public class ListaUsuarioActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     SwipeRefreshLayout swipeRefreshLayout;
-
-
+    FirebaseAuth mAuth;
+    DatabaseReference mDatabase;
+    String Name_DB="CUACK";
+    TextView editText_name;
+    private ArrayList<Incidencia> incidencias = new ArrayList<>();;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +67,7 @@ public class ListaUsuarioActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view1);
         toolbar = findViewById(R.id.toolbar1);
-
+        mAuth = FirebaseAuth.getInstance();
         setSupportActionBar(toolbar);
 
         navigationView.bringToFront();
@@ -77,17 +90,57 @@ public class ListaUsuarioActivity extends AppCompatActivity {
                 return true;
             }
         });
+        navigationView.setCheckedItem(R.id.nav_lista);
 
-        Listaincidentes();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        editText_name = findViewById(R.id.Nombre);
+        getUserinfo();
+        publicationValueEventListener();
 
-        swipeRefreshLayout = findViewById(R.id.swipe);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+/*Codigo crear plantilla
+        Incidencia inc = new Incidencia();
+        String id = mDatabase.push().getKey();
+        inc.setIdaccidentes(id);
+        inc.setNombre_accidente("asd");
+        inc.setDescripcion("asdad");
+        inc.setUbicacion("asdasd");
+        inc.setIdusuario("sfsdfds");
+        inc.setEstado("asdasd");
+        inc.setComentario("asda");
+        inc.setFoto("asdas");
+        mDatabase.child("incidentes").child(id).setValue(inc);
+*/
+
+        Log.d("TAG", Name_DB);
+
+
+
+
+    }
+
+
+    private void getUserinfo() {
+        String id = mAuth.getCurrentUser().getUid();
+        Log.d("TAG1", id);
+
+
+        mDatabase.child("usuarios/"+id).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onRefresh() {
-                Listaincidentes();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                //listaIncidenciasPersonalAdapter.notifyDataSetChanged();
-                swipeRefreshLayout.setRefreshing(false);
+
+                if (dataSnapshot.exists()) {
+                    Name_DB = dataSnapshot.child("nombre").getValue().toString();
+                    Log.d("TAG2", Name_DB);
+                    editText_name.setText(dataSnapshot.child("nombre").getValue().toString());
+                    // Email_DB = dataSnapshot.child("email").getValue().toString();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
@@ -95,60 +148,6 @@ public class ListaUsuarioActivity extends AppCompatActivity {
 
     }
 
-    //Lista de incidentes
-    public void Listaincidentes() {
-
-        //---------------------------------------------------------------------------------------
-        //OBTENER LISTA DE INCIDENCIAS
-        // URL Web service 2: Listar Trabajos
-        String url ="http://192.168.1.11:3000/";
-
-        StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("exitoVolley",response);
-
-                        // Convertir los datos en formato json (response) a una clase en Java con Gson
-                        Gson gson = new Gson();
-                        Incidencia[] listaincidente = gson.fromJson(response,Incidencia[].class);
-                        Log.d("le",Integer.toString(listaincidente.length));
-
-                        ListaIncidenciasUsuarioAdapter listaIncidenciasUsuarioAdapter = new ListaIncidenciasUsuarioAdapter(listaincidente,ListaUsuarioActivity.this);
-                        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-                        recyclerView.setAdapter(listaIncidenciasUsuarioAdapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(ListaUsuarioActivity.this));
-
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                      //  Log.e("errorVolley",error.getMessage());
-                    }
-                }
-        ){
-            // Sobreescribir getParams() --> Enviar parámetro de body con POST
-
-            // Sobreescribir getHeaders()
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> cabeceras = new HashMap<>();
-                cabeceras.put("log","info");
-                return cabeceras;
-            }
-
-
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        requestQueue.add(stringRequest);
-
-
-
-    }
 
 
 
@@ -165,15 +164,6 @@ public class ListaUsuarioActivity extends AppCompatActivity {
         }
 
     }
-
-
-
-
-
-
-
-
-
 
 //Habilitar Internet
     public boolean isInternetAvailable() {
@@ -208,7 +198,52 @@ public class ListaUsuarioActivity extends AppCompatActivity {
 
     }
 
+    public void CerraSesion(View view){
 
+        mAuth.signOut();
+        startActivity(new Intent(ListaUsuarioActivity.this, ActivityLogin.class));
+        finish();
+
+
+    }
+
+
+
+    public void publicationValueEventListener() {
+        mDatabase.child("incidentes").addValueEventListener(new ValueEventListener() { // CAMBIAR POR UN userId VARIABLE
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) { // cada vez que hay un cambio en Firebase
+                Log.d("dataSnapshotJson", dataSnapshot.getValue().toString()); // dataSnapshot contiene el json (equivalente a gson.fromJson)
+
+                incidencias.clear(); // vaciar el ArrayList de publicaciones, para llenar la lista nuevamente
+                // Iterar por todas las publicaciones del JSON
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Incidencia inc1 = postSnapshot.getValue(Incidencia.class);
+                    incidencias.add(inc1);  // agregar todas las publicaciones a un arreglo
+                }
+
+                buildPublicationRecyclerView();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { // si hay un error al obtener la información en Firebase
+
+            }
+        });
+
+    }
+    // Método para construir el RecyclerView
+    public void buildPublicationRecyclerView(){
+
+        ListaIncidenciasUsuarioAdapter listaIncidenciasUsuarioAdapter = new ListaIncidenciasUsuarioAdapter(incidencias,ListaUsuarioActivity.this);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setAdapter(listaIncidenciasUsuarioAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ListaUsuarioActivity.this));
+
+        // Log.d("size2",Integer.toString(publications.size())); // imprimir desde un List
+
+
+    }
 
 
 }

@@ -15,12 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pucp.proyectogrupo6.Entidades.Incidencia;
 
+import java.util.List;
+
 public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaIncidenciasPersonalAdapter.IncidenciaPersonalViewHolder> {
 
-    Incidencia[] listaincidente;
+
+    List<Incidencia> listaincidente;
     Context contexto;
 
-    public ListaIncidenciasPersonalAdapter(Incidencia[] lista, Context c) {
+    public ListaIncidenciasPersonalAdapter(List<Incidencia> lista, Context c) {
 
         this.listaincidente = lista;
         this.contexto = c;
@@ -30,11 +33,11 @@ public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaI
     public static class IncidenciaPersonalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nombre_incidencia;
         TextView estado;
-        TextView descripcion;
-        TextView ubicacion;
-        TextView foto;
-        TextView comentario;
-        TextView idAccidente;
+        String descripcion;
+        String ubicacion;
+        String foto;
+        String comentario;
+        String idAccidente;
         //buttons
         Button buttonVerDetalle;
         Button buttonHecho;
@@ -48,11 +51,7 @@ public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaI
             context = itemView.getContext();
             nombre_incidencia = itemView.findViewById(R.id.nombre_incidencia);
             estado = itemView.findViewById(R.id.estado);
-            descripcion = itemView.findViewById(R.id.descripcion);
-            foto = itemView.findViewById(R.id.foto);
-            ubicacion = itemView.findViewById(R.id.ubicacion);
-            comentario = itemView.findViewById(R.id.comentario);
-            idAccidente = itemView.findViewById(R.id.idAccidente);
+
             //Referencia a botones:
             buttonVerDetalle = itemView.findViewById(R.id.buttonDetalle);
             buttonHecho = itemView.findViewById(R.id.buttonHecho);
@@ -76,10 +75,10 @@ public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaI
                     Intent intent = new Intent(context, VerDetalleActivity.class);
                     intent.putExtra("nombre_incidencia", nombre_incidencia.getText());
                     intent.putExtra("estado", estado.getText());
-                    intent.putExtra("descripcion", descripcion.getText());
-                    intent.putExtra("foto", foto.getText());
-                    intent.putExtra("ubicacion", ubicacion.getText());
-                    intent.putExtra("comentario", comentario.getText());
+                    intent.putExtra("descripcion", descripcion);
+                    intent.putExtra("foto", foto);
+                    intent.putExtra("ubicacion", ubicacion);
+                    intent.putExtra("comentario", comentario);
 
                     //intent.putExtra("listatrabajos",listTrabajos);
                     context.startActivity(intent);
@@ -87,7 +86,7 @@ public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaI
 
                 case R.id.buttonHecho:
                     Intent intent1 = new Intent(context, AgregarComentarioActivity.class);
-                    intent1.putExtra("idAccidente", idAccidente.getText());
+                    intent1.putExtra("idAccidente", idAccidente);
                     context.startActivity(intent1);
                     break;
 
@@ -108,20 +107,25 @@ public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaI
 
     @Override
     public void onBindViewHolder(IncidenciaPersonalViewHolder holder, int position) {
-        Incidencia incidencia = listaincidente[position];
+        Incidencia incidencia = listaincidente.get(position);
         String getnomb_accidente = incidencia.getNombre_accidente();
         String getestado = incidencia.getEstado();
         String getdescripcion = incidencia.getDescripcion();
         String getfoto = incidencia.getFoto();
         String getubicacion = incidencia.getUbicacion();
         String getidaccidente = String.valueOf(incidencia.getIdaccidentes());
-
+        String getcomentario = incidencia.getComentario();
         holder.nombre_incidencia.setText(getnomb_accidente);
         holder.estado.setText(getestado);
-        holder.descripcion.setText(getdescripcion);
-        holder.foto.setText(getfoto);
-        holder.ubicacion.setText(getubicacion);
-        holder.idAccidente.setText(getidaccidente);
+        holder.descripcion = getdescripcion;
+        holder.foto = getfoto;
+        holder.ubicacion = getubicacion;
+        holder.idAccidente = getidaccidente;
+        if(!getcomentario.equals("")){
+                        holder.buttonHecho.setVisibility(View.INVISIBLE);
+        }
+
+        holder.comentario = getcomentario;
         holder.setOnClickListeners();
 
     }
@@ -129,7 +133,7 @@ public class ListaIncidenciasPersonalAdapter extends RecyclerView.Adapter<ListaI
     @Override
     public int getItemCount() {
 
-        return listaincidente.length;
+        return listaincidente.size();
     }
 
 
